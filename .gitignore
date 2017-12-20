@@ -1,0 +1,3 @@
+# keep your env secret.
+.env
+persistent-data

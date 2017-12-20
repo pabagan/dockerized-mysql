@@ -1,0 +1,21 @@
+version: '2'
+
+services:
+  # mysql
+  mysql:
+    image: mysql:latest
+    volumes_from:
+      - persistent-data
+    ports:
+      - "3306:3306"
+    container_name: "${APP_NAME}-mysql"
+    env_file: .env
+
+  # mysql data
+  persistent-data:
+    image: busybox
+    container_name: "${APP_NAME}-persistent-data"
+    volumes:
+      - ${PERSISTENT_DATA}/mysql:/var/lib/mysql
+    env_file: .env
+    command: "true"
